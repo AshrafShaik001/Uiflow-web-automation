@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+      "baseUrl": "https://www.uiflow-stage.com/",
+      "target": "es6",
+      "lib": ["es6", "dom"],
+      "types": ["cypress", "node", "./cypress/support", "cypress-wait-until", "@4tw/cypress-drag-drop"]            
+    },
+    "include": ["**/*.*", 
+    "./cypress/support/index.d.ts"]
+  }
