@@ -59,4 +59,11 @@ export class MyAppsPage {
     cy.xpath("//span[text()='All']//ancestor::div[3]/div[2]//span[text()='"+name+"']").should('not.exist');
   }
 
+  createTheApp(appName: string){
+    this.selectBlankTemplate();
+    this.enterNameinNameTxtBx(appName);
+    this.clickOnCreateAppBtn();
+    cy.waitForLoadProgressDissapear();
+  }
+
 }

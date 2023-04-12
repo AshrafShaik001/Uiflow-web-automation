@@ -8,3 +8,14 @@ Cypress.Commands.add('getIframeBody', (iFrameLocator: string): any => {
   .its('0.contentDocument.body').should('not.be.empty')
   .then(cy.wrap)
 })
+
+Cypress.Commands.add('switchToTestMode', () =>{
+  cy.url().then((url)=>{
+    cy.visit(url+'?testmode');
+  })
+})
+
+Cypress.Commands.add('waitForLoadProgressDissapear', () =>{
+  cy.WaitForObjectToDisappear('#studio-load-progress');
+})
+

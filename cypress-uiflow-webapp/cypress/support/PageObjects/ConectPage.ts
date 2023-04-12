@@ -6,7 +6,7 @@ export class ConnectPage {
   AddNewDataConnectionBtn: string = '[data-test-id="add-new-connection-button"]'
   RestAPIAddConnectionBtn: string = "//h5[text()='REST API']//parent::div/following-sibling::button"
   ConnectionNameTxtBx: string = "//label[text()='Connection Name']/following-sibling::input"
-  ConnectionUrlTxtBx: string = "//label[text()='URL']/parent::div/parent::div/following-sibling::div/input"
+  ConnectionUrlTxtBx: string = "//label[text()='URL']/parent::div/parent::div//input"
   ActionNameTxtBx: string = "//label[text()='Action Name']/following-sibling::input"
   ActionMethodDropDown: string = '[data-prop-path="method"] select'
   ActionPathTxtBx: string = '//div[@data-prop-path="path"]//input[@placeholder]'
@@ -33,7 +33,7 @@ export class ConnectPage {
   }
 
   typeInConnectionUrlTxtBx(url: string){
-    cy.xpath(this.ConnectionUrlTxtBx).clear().type(url).should('have.value', url);
+    cy.xpath(this.ConnectionUrlTxtBx).type('h').clear().type(url).should('have.value', url);
   }
 
   typeInActionNameTxtBx(name: string){
@@ -98,6 +98,10 @@ export class ConnectPage {
 
   clickOnPublishToLogicBtn(){
     cy.ClickOnObject(this.PublishToLogicBtn);
+  }
+
+  waitForSpinnerDisspear(){
+    cy.WaitForObjectToDisappear('svg[stroke="currentColor"]');
   }
 
 }

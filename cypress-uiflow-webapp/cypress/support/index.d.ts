@@ -59,6 +59,8 @@ declare namespace Cypress {
       verifyNumOfTimesElementWithTextIsOnTheScreen(object: string, text: string, numner: number): Chainable<Element>;
       verifyObjectIncludesText(object: string, text: string): Chainable<Element>;
       getIframeBody(iFrameLocator: string): Chainable<Element>;
+      switchToTestMode():Chainable<Element>;
+      waitForLoadProgressDissapear():Chainable<Element>;
     }
   }  
   
