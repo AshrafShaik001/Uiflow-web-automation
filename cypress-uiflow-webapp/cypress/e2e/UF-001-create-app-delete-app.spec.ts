@@ -6,6 +6,7 @@ import {
 import {
   ConnectPage
 } from "../support/PageObjects/ConectPage";
+import { DesignPage } from "../support/PageObjects/DesignPage";
 import { LogicPage } from "../support/PageObjects/LogicPage";
 import {
   LoginPage
@@ -14,15 +15,15 @@ import {
   MyAppsPage
 } from "../support/PageObjects/MyAppsPage";
 
-
 describe("Create new app and delete the app" + Date().toLocaleString(), () => {
   const loginpage = new LoginPage();
   const myAppspage = new MyAppsPage();
   const appPage = new AppPage();
   const connectPage = new ConnectPage();
   const logicPage = new LogicPage();
+  const designPage = new DesignPage();
 
-  it("Create the app and delete the app", () => {
+  it("UF001: Create the app and delete the app", () => {
     cy.visit("/login");
     loginpage.login();
 
@@ -54,7 +55,7 @@ describe("Create new app and delete the app" + Date().toLocaleString(), () => {
     myAppspage.verifyAppNotExistInApps(appName);
   })
 
-  it("Work on the Connection ", () => {
+  it("UF002: Create and validate a collection.", () => {
     cy.visit("/login");
     loginpage.login();
 
@@ -128,4 +129,31 @@ describe("Create new app and delete the app" + Date().toLocaleString(), () => {
     myAppspage.delteTheApp(appName);
   })
 
+  it("UF003: Publish to development environment", () => {
+    cy.visit("/login");
+    loginpage.login();
+
+    var appName: string = "New App"+new Date().getTime();
+
+    // Create the app
+    myAppspage.createTheApp(appName);
+    appPage.verifyPublishBtn();
+
+    cy.switchToTestMode();
+    appPage.clickOnDesignBtn();
+    designPage.waitForSpinnerDisspear();
+    designPage.DragAndDropTextComponent();
+
+    appPage.clickOnLogicBtn();
+    logicPage.searchWith('Alert');
+    logicPage.dragTheComponent('Alert');
+    logicPage.addTextBox();
+
+    logicPage.addNewActionToComponent('onClick');
+
+    logicPage.connectTwoComponentsNodes('Text', 'onClick', 'Alert', 'call');
+    logicPage.setValueOfComponent('Alert', 'Hello World');
+
+    logicPage.publishToDevopmentEnvironment();
+  })
 });

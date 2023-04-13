@@ -9,6 +9,7 @@ export class AppPage {
   MyWorkSpaceBtn: string = "//button//span[text()='My Workspace']";
   ConnectBtn: string = "button[data-test-id='Connect']"
   LogicBtn: string = 'button[data-test-id="Logic"]'
+  DesignBtn: string = 'button[data-test-id="Design"]'
 
   // Actions
   verifyTitleOfTheApp(name: string){
@@ -38,6 +39,10 @@ export class AppPage {
 
   clickOnLogicBtn(){
     cy.ClickOnObject(this.LogicBtn);
+  }
+
+  clickOnDesignBtn(){
+    cy.ClickOnObject(this.DesignBtn);
   }
 
 }
