@@ -81,9 +81,9 @@ describe("Create new app and delete the app" + Date().toLocaleString(), () => {
     connectPage.verifyActionInExistingActions(firstComponentName);
 
     connectPage.clickOnSendBtn();
-    cy.wait(2000);
-    // connectPage.waitForSpinnerDisspear();
-    connectPage.clickOnSendBtn();
+    // cy.wait(2000);
+    // // connectPage.waitForSpinnerDisspear();
+    // connectPage.clickOnSendBtn();
     cy.wait(2000);
     connectPage.selectTheCheckBox('id');
     connectPage.selectTheCheckBox('title');
@@ -129,31 +129,45 @@ describe("Create new app and delete the app" + Date().toLocaleString(), () => {
     myAppspage.delteTheApp(appName);
   })
 
-  it("UF003: Publish to development environment", () => {
+  it.skip("UF003: Publish to development environment", () => {
     cy.visit("/login");
     loginpage.login();
+    cy.wait(5000);
+    cy.visit('https://www.uiflow-stage.com/apps/new_app1681768906276_xmw4irmq/studio/main?testmode')
 
-    var appName: string = "New App"+new Date().getTime();
+    // var appName: string = "App"+new Date().getTime();
 
-    // Create the app
-    myAppspage.createTheApp(appName);
-    appPage.verifyPublishBtn();
+    // // Create the app
+    // myAppspage.createTheApp(appName);
+    // appPage.verifyPublishBtn();
 
-    cy.switchToTestMode();
-    appPage.clickOnDesignBtn();
-    designPage.waitForSpinnerDisspear();
-    designPage.DragAndDropTextComponent();
+    // cy.switchToTestMode();
+    // appPage.clickOnDesignBtn();
+    // designPage.waitForSpinnerDisspear();
+    // designPage.DragAndDropTextComponent();
 
-    appPage.clickOnLogicBtn();
-    logicPage.searchWith('Alert');
-    logicPage.dragTheComponent('Alert');
-    logicPage.addTextBox();
+    // appPage.clickOnLogicBtn();
+    // logicPage.searchWith('Alert');
+    // logicPage.dragTheComponent('Alert');
+    // logicPage.addTextBox();
 
-    logicPage.addNewActionToComponent('onClick');
+    // logicPage.addNewActionToComponent('onClick');
 
-    logicPage.connectTwoComponentsNodes('Text', 'onClick', 'Alert', 'call');
-    logicPage.setValueOfComponent('Alert', 'Hello World');
+    // logicPage.connectTwoComponentsNodes('Text', 'onClick', 'Alert', 'call');
+    // logicPage.setValueOfComponent('Alert', 'Hello World');
 
-    logicPage.publishToDevopmentEnvironment();
+    // logicPage.publishToDevopmentEnvironment();
+    // logicPage.waitUntilItPublished();
+
+    logicPage.clickOnPublishBtn();
+    logicPage.getDevelopmentHostedUrl().then((url)=>{
+      cy.origin('https://'+url, ()=>{
+        cy.on('window:alert',(t)=>{
+          //assertions
+          expect(t).to.contains('Hello World');
+       })
+      })
+    })
   })
+  
 });

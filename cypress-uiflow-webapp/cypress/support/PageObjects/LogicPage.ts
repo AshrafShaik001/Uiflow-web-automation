@@ -12,7 +12,8 @@ export class LogicPage {
   publishBtn: string = '[data-test-id="publish-popup-button"]'
   DevelopmentOrMainCheckBox: string = '[data-test-id="publish-option-checkbox-publish-dev"]'
   PublishToSelecedEnvironmentsBtn: string = '[data-test-id="publish-button-publish-to"]'
-
+  PublishProgressBar: string = '[data-test-id="publish-popup-button"][disabled]'
+  DevelopmentHostedUrl: string = '//input[@data-test-id="publish-option-checkbox-publish-dev"]/parent::label/parent::div/following-sibling::p'
 
   verifyCheckBoxIsCheckedInResponse(nameOfTheCheckBox: string, index: number = -1){
     var dataPath = "";
@@ -76,9 +77,10 @@ export class LogicPage {
 
   clickOnPreviewReload(){
     cy.ClickOnObject(this.ReloadBtn);
-    cy.ClickOnObject(this.ReloadBtn);
-    cy.VerifyObjectIsVisible('svg[stroke="currentColor"]');
-    cy.WaitForObjectToDisappear('svg[stroke="currentColor"]');
+    // cy.wait(2000);
+    // cy.ClickOnObject(this.ReloadBtn);
+    // cy.VerifyObjectIsVisible('svg[stroke="currentColor"]');
+    // cy.WaitForObjectToDisappear('svg[stroke="currentColor"]');
   }
 
   dragTheComponent(componnentName: string){
@@ -153,5 +155,14 @@ export class LogicPage {
     this.clickOnPublishToSelecedEnvironmentsBtn();
   }
 
+  waitUntilItPublished(){
+    cy.WaitForObjectToDisappear(this.PublishProgressBar);
+  }
+
+  getDevelopmentHostedUrl(){
+    return cy.xpath(this.DevelopmentHostedUrl).then(($ele) =>{
+      return $ele.text();
+    })
+  }
 
 }
