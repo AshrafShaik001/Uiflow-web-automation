@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="35.7040" tests="1" failures="1">
+  <testsuite name="Root Suite" timestamp="2023-04-19T09:11:06" tests="0" file="cypress/e2e/UF-001-create-app-delete-app.spec.ts" time="0.0000" failures="0">
+  </testsuite>
+  <testsuite name="Create new app and delete the appWed Apr 19 2023 14:41:05 GMT+0530 (India Standard Time)" timestamp="2023-04-19T09:11:06" tests="1" time="35.6960" failures="1">
+    <testcase name="Create new app and delete the appWed Apr 19 2023 14:41:05 GMT+0530 (India Standard Time) UF001: Create the app and delete the app" time="0.0000" classname="UF001: Create the app and delete the app">
+      <failure message="`cy.click()` can only be called on a single element. Your subject contained 2 elements. Pass `{ multiple: true }` if you want to serially click each element.
+
+https://on.cypress.io/click" type="CypressError"><![CDATA[CypressError: `cy.click()` can only be called on a single element. Your subject contained 2 elements. Pass `{ multiple: true }` if you want to serially click each element.
+
+https://on.cypress.io/click
+    at mouseAction (https://www.uiflow-stage.com/__cypress/runner/cypress_runner.js:132254:76)
+    at Context.click (https://www.uiflow-stage.com/__cypress/runner/cypress_runner.js:132418:14)
+    at wrapped (https://www.uiflow-stage.com/__cypress/runner/cypress_runner.js:151038:19)
+From Your Spec Code:
+    at MyAppsPage.openTheExistingApp (webpack:///./cypress/support/PageObjects/MyAppsPage.ts:40:103)
+    at Context.eval (webpack:///./cypress/e2e/UF-001-create-app-delete-app.spec.ts:44:15)]]></failure>
+    </testcase>
+  </testsuite>
+</testsuites>

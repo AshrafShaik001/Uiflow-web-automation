@@ -11,7 +11,10 @@ export class MyAppsPage {
   SearchAppTxt: string = '[placeholder="Search apps"]'
   DeleteAppOption: string = '//button//span[text()="Delete App"]'
   DeleteAppPopUpBtn: string = '//button//span[text()="Delete App"]'
+  DuplicateAppOption: string = '//button//span[text()="Duplicate App"]'
+  DuplicateAppPopUpBtn: string = "//span[text()='Duplicate App']"
 
+  // Actions
   selectBlankTemplate(){
     cy.ClickOnObjectWithText(this.GeneralBtn, "Blank Starter");
   }
@@ -64,6 +67,22 @@ export class MyAppsPage {
     this.enterNameinNameTxtBx(appName);
     this.clickOnCreateAppBtn();
     cy.waitForLoadProgressDissapear();
+  }
+
+  clickOnDuplicateAppOption(){
+    cy.xpath(this.DuplicateAppOption).first().should('exist').click();
+  }
+
+  duplicateTheApp(appName: string){
+    this.clickOnMenuBtn(appName);
+    this.clickOnDuplicateAppOption();
+    cy.get('input[placeholder="Name"]').last().should('have.value', 'Duplicate '+appName);
+    this.clickOnDuplicateAppPopUpBtn();
+    cy.waitForLoadProgressDissapear();
+  }
+
+  clickOnDuplicateAppPopUpBtn(){
+    cy.xpath(this.DuplicateAppPopUpBtn).should('exist').click();
   }
 
 }

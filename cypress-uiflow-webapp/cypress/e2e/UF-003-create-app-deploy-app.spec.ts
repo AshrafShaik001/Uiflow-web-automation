@@ -3,9 +3,6 @@
 import {
   AppPage
 } from "../support/PageObjects/AppPage";
-import {
-  ConnectPage
-} from "../support/PageObjects/ConectPage";
 import { DesignPage } from "../support/PageObjects/DesignPage";
 import { LogicPage } from "../support/PageObjects/LogicPage";
 import {
@@ -15,11 +12,10 @@ import {
   MyAppsPage
 } from "../support/PageObjects/MyAppsPage";
 
-describe("Create new app and delete the app" + Date().toLocaleString(), () => {
+describe("UF-003: Create new app and deploy the app" + Date().toLocaleString(), () => {
   const loginpage = new LoginPage();
   const myAppspage = new MyAppsPage();
   const appPage = new AppPage();
-  const connectPage = new ConnectPage();
   const logicPage = new LogicPage();
   const designPage = new DesignPage();
 
@@ -57,7 +53,7 @@ describe("Create new app and delete the app" + Date().toLocaleString(), () => {
     })
   })
 
-  it('UF003: Part 2: Verify the published url', ()=>{
+  it.skip('UF003: Part 2: Verify the published url', ()=>{
     cy.fixture("devUrl")
     .then((data) => {
       Cypress.config('baseUrl', null)

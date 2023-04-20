@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="31.0930" tests="1" failures="1">
+  <testsuite name="Root Suite" timestamp="2023-04-19T09:11:42" tests="0" file="cypress/e2e/UF-002-create-and-validate-connection.spec.ts" time="0.0000" failures="0">
+  </testsuite>
+  <testsuite name="UF002: Create and validate a collection.Wed Apr 19 2023 14:41:42 GMT+0530 (India Standard Time)" timestamp="2023-04-19T09:11:42" tests="1" time="31.0790" failures="1">
+    <testcase name="UF002: Create and validate a collection.Wed Apr 19 2023 14:41:42 GMT+0530 (India Standard Time) UF002: Create and validate a collection." time="0.0000" classname="UF002: Create and validate a collection.">
+      <failure message="Timed out retrying after 30000ms: Expected to find element: `input[type=&quot;email&quot;]`, but never found it." type="AssertionError"><![CDATA[AssertionError: Timed out retrying after 30000ms: Expected to find element: `input[type="email"]`, but never found it.
+    at Context.eval (webpack:///./cypress/support/commands-object-actions.ts:122:28)]]></failure>
+    </testcase>
+  </testsuite>
+</testsuites>

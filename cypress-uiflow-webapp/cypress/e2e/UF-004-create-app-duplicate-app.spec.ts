@@ -19,40 +19,47 @@ import {
   MyAppsPage
 } from "../support/PageObjects/MyAppsPage";
 
-describe("Create new app and delete the app" + Date().toLocaleString(), () => {
+describe("UF-004: Create new app and duplicate the app" + Date().toLocaleString(), () => {
   const loginpage = new LoginPage();
   const myAppspage = new MyAppsPage();
   const appPage = new AppPage();
 
-  it("UF001: Create the app and delete the app", () => {
+  it("UF004: Duplicate the app", () => {
     cy.visit("/login");
     loginpage.login();
 
     var appName: string = "New App" + new Date().getTime();
-    // Create the app
-    myAppspage.selectBlankTemplate();
-    myAppspage.enterNameinNameTxtBx(appName);
-    myAppspage.clickOnCreateAppBtn();
 
-    // Verif the app
-    appPage.verifyTitleOfTheApp(appName);
+    // Create the app
+    myAppspage.createTheApp(appName);
     appPage.verifyPublishBtn();
 
     appPage.navigateToMyWorkSpace();
     myAppspage.searchWithAppName(appName);
 
-    myAppspage.openTheExistingApp(appName);
-    appPage.verifyTitleOfTheApp(appName);
+    // Duplicate the app
+    myAppspage.duplicateTheApp(appName);
+    appPage.verifyPublishBtn();
+    appPage.verifyTitleOfTheApp('Duplicate '+appName);
+
+    // Verif the duplicate app
+    appPage.verifyTitleOfTheApp('Duplicate '+appName);
+    appPage.verifyPublishBtn();
+
+    appPage.navigateToMyWorkSpace();
+    myAppspage.searchWithAppName('Duplicate '+appName);
+
+    myAppspage.openTheExistingApp('Duplicate '+appName);
+    appPage.verifyTitleOfTheApp('Duplicate '+appName);
 
     // Delete the app
     appPage.navigateToMyWorkSpace();
-    myAppspage.searchWithAppName(appName);
+    myAppspage.searchWithAppName('Duplicate '+appName);
 
-    myAppspage.delteTheApp(appName);
-
-    // Verify the app
+    myAppspage.delteTheApp('Duplicate '+appName);
     cy.reload();
     myAppspage.searchWithAppName(appName);
-    myAppspage.verifyAppNotExistInApps(appName);
+    myAppspage.delteTheApp(appName);
   })
+
 });

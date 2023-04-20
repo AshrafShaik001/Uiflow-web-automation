@@ -53,7 +53,10 @@ export class ConnectPage {
   }
 
   clickOnSendBtn(){
-    cy.ClickOnObject(this.SendBtn);
+    cy.get('svg[stroke="currentColor"]').should('not.exist');
+    cy.get('div').contains('Loading...').should('not.exist');
+    cy.wait(1000);
+    cy.get(this.SendBtn).click();
   }
 
   selectTheCheckBox(nameOfTheCheckBox: string, index: number = -1){
@@ -97,7 +100,8 @@ export class ConnectPage {
   }
 
   clickOnPublishToLogicBtn(){
-    cy.ClickOnObject(this.PublishToLogicBtn);
+    cy.get(this.PublishToLogicBtn).click();
+    //cy.ClickOnObject(this.PublishToLogicBtn);
   }
 
   waitForSpinnerDisspear(){
